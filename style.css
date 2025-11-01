@@ -1,0 +1,121 @@
+/* 全体のスタイル */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+header {
+  background-color: #3399ff;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+header nav a {
+  color: white;
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+h1, h2, h3 {
+  margin: 0.5rem 0;
+}
+
+.itiran {
+  text-align: center;
+  margin-top: 2rem;
+  background-color: #ddd;
+  margin: 20px;
+  border: #222 solid 1.5px;
+  border-radius: 20px;
+}
+
+/* 鉄道一覧 */
+.railway-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.railway-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  width: 250px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.railway-card img {
+  width: 80%;
+  border-radius: 8px;
+}
+
+.railway-card .btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #3399ff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.railway-card .btn:hover {
+  background-color: #2673cc;
+}
+
+/* フッター */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #222;
+  color: white;
+}
+
+.okiimg {
+    padding: 0px;
+}
+
+.aikimg {
+    padding: -4050px;
+    margin: -30px;
+}
+
+.footer p {
+    font-style: italic;
+    font-weight: normal;
+}
+
+.zuiji {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.toppage-s{
+    background-color: #3399ff;
+    color: white;
+    border: 2px solid #222;
+    margin: 10px;
+    text-align: center;
+    border-radius: 3.5px;
+    padding: 5px;
+
+}
+
+.toppage-s a{
+    text-decoration: none;
+    color: white;
+}
+
+.toppage-s a:hover{
+    font-weight:bold;
+}
