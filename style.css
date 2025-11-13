@@ -1,3 +1,4 @@
+
 /* 全体のスタイル */
 body {
   font-family: 'Arial', sans-serif;
@@ -5,6 +6,30 @@ body {
   padding: 0;
   background-color: #f8f8f8;
   color: #333;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 200px,
+    rgba(0, 0, 0, 0.03) 200px,
+    rgba(0, 0, 0, 0.03) 400px
+  );
+  position: relative;
+}
+
+body::before {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.05);
+  transform: rotate(-45deg);
+  pointer-events: none;
+  white-space: pre-wrap;
+  line-height: 1.8;
+  z-index: -1;
+  overflow: hidden;
 }
 
 header {
