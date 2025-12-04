@@ -126,9 +126,9 @@ footer {
 }
 
 .toppage-s{
-    background-color: #3399ff;
-    color: white;
-    border: 2px solid #222;
+    background-color: #88c4ff;
+    color: rgb(0, 0, 0);
+    border: 1.5px solid #08bec4;
     margin: 10px;
     text-align: center;
     border-radius: 3.5px;
@@ -138,9 +138,49 @@ footer {
 
 .toppage-s a{
     text-decoration: none;
-    color: white;
+    color: rgb(0, 0, 0);
+    font-weight: 500;
 }
 
 .toppage-s a:hover{
-    font-weight:bold;
+    border-bottom: 2px dashed #222;
+}
+
+.sozai {
+  display: block;
+  margin: 20px;
+  padding-bottom: 4px;
+  text-align: center;
+  text-decoration: none;
+  color: #222;
+  font-size: 20px;
+}
+
+.sozai:hover {
+  border-bottom: 2px dashed #222;
+}
+
+.sozai2 {
+  display: block;
+  margin: 20px;
+  padding-bottom: 4px;
+  text-align: center;
+
+}
+
+/* デフォルトは無効 */
+br.mobile-only-br {
+  display: none;
+}
+
+/* スマホだけ有効に */
+@media (max-width: 767px) {
+  br.mobile-only-br {
+    display: inline;
+  }
+}
+
+.kome {
+  color: #ff0000;
+  font-weight: 500;
 }
