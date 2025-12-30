@@ -193,3 +193,28 @@ br.mobile-only-br {
 .wks-img {
   width: 6px;
 }
+
+.btn2 {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #ffffff;
+  border: 1.5px solid #3399ff;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn2:hover {
+  background-color: #ecf5ff;
+}
+
+.sonota-list a {
+  color: #000000;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.sonota-list a:hover {
+  border-bottom: 1.5px dashed #222;
+}
