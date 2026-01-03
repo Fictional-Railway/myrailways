@@ -6,13 +6,7 @@ body {
   padding: 0;
   background-color: #f8f8f8;
   color: #333;
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 200px,
-    rgba(255, 0, 0, 0.08) 200px,
-    rgba(0, 81, 255, 0.08) 400px
-  );
+  background: #ecffd5;
   position: relative;
 }
 
@@ -69,9 +63,8 @@ h1, h2, h3 {
 }
 
 .railway-card {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   width: 250px;
   padding: 1rem;
   text-align: center;
