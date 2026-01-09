@@ -5,155 +5,392 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>架空鉄道まとめ！！！</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
   <meta name="description" content="趣味で制作した架空鉄道のHPを掲載しております。また、鉄道関連3Dモデルも配布中です！">
+  
+  <style>
+    /* --- ベーススタイル --- */
+    :root {
+      --primary-color: #0056b3; /* 信頼感のある鉄道ブルー */
+      --accent-color: #00a8cc; /* 明るい空色 */
+      --bg-color: #f4f7f6;
+      --card-bg: #ffffff;
+      --text-main: #333333;
+      --text-sub: #666666;
+      --alert-bg: #fff0f0;
+      --alert-text: #d32f2f;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* --- ヘッダー --- */
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* --- メインコンテンツ --- */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* --- お知らせ・素材エリア --- */
+    .sozai {
+      display: block;
+      background-color: var(--accent-color);
+      color: white;
+      text-align: center;
+      padding: 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s;
+      margin-bottom: 10px;
+    }
+    .sozai:hover {
+      background-color: var(--primary-color);
+    }
+
+    .sozai2 {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      margin-bottom: 30px;
+    }
+
+    /* 警告メッセージ風スタイル */
+    .alert-box {
+      background-color: var(--alert-bg);
+      color: var(--alert-text);
+      padding: 15px;
+      border-left: 5px solid var(--alert-text);
+      border-radius: 4px;
+      margin: 20px 0;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    /* --- セクション見出し --- */
+    section {
+      margin-bottom: 60px;
+    }
+
+    h2.itiran {
+      font-size: 1.8rem;
+      border-bottom: 3px solid var(--primary-color);
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    h2.itiran::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 30%;
+      height: 3px;
+      background-color: var(--accent-color);
+    }
+
+    /* --- グリッドレイアウト --- */
+    .railway-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    /* --- カードデザイン --- */
+    .railway-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .railway-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .railway-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover; /* 画像の比率を維持しつつ枠を埋める */
+      background-color: #e0e0e0; /* 画像がない場合の背景色 */
+      border-bottom: 1px solid #eee;
+    }
+
+    .railway-card h3 {
+      font-size: 1.25rem;
+      margin: 15px 20px 10px;
+      color: var(--primary-color);
+    }
+
+    .railway-card p {
+      padding: 0 20px;
+      font-size: 0.95rem;
+      color: var(--text-sub);
+      flex-grow: 1; /* ボタンを下揃えにするため */
+      margin-bottom: 20px;
+    }
+
+    .railway-card p.kome {
+      color: var(--alert-text);
+      font-size: 0.85rem;
+      font-weight: bold;
+    }
+
+    /* --- ボタン --- */
+    .btn {
+      display: block;
+      background-color: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 12px;
+      margin: 0 20px 20px;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background-color: #003d80;
+    }
+    /* 2つ目のボタンがある場合のマージン調整 */
+    .railway-card .btn + .btn {
+      margin-top: -10px;
+      background-color: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
+    .railway-card .btn + .btn:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    /* その他のリンクボタン */
+    .btn2 {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #6c757d;
+      color: white;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      transition: opacity 0.3s;
+    }
+    .btn2:hover {
+      opacity: 0.8;
+    }
+
+    /* --- 特殊なインフォメーション枠 --- */
+    .info-border {
+      text-align: center;
+      background-color: #e0f7fa;
+      color: #006064;
+      margin: 40px auto;
+      border-radius: 10px;
+      padding: 20px;
+      border: 2px solid var(--accent-color);
+      max-width: 800px;
+      line-height: 1.8;
+    }
+
+    .zuiji {
+      text-align: center;
+      margin-top: 50px;
+      font-weight: bold;
+      color: var(--text-main);
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+    }
+
+    /* --- フッター --- */
+    .footer {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9rem;
+    }
+    .footer p {
+      margin: 10px 0;
+    }
+
+    /* --- レスポンシブ対応 --- */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+      .mobile-only-br {
+        display: block;
+      }
+    }
+    @media (min-width: 769px) {
+      .mobile-only-br {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1>架空鉄道<br class="mobile-only-br">まとめ！！！</h1>
     <p>作った架空鉄道を紹介します。</p>
-    
-    <nav>
-    </nav>
   </header>
 
   <main>
-<a class="sozai" href="./sozai.html">鉄道関連の3Dモデルはこちらから配布中！</a>
-<p class="sozai2">現在、制作中の3DモデルをGoogle driveを介して配布しております。</p>
+    <a class="sozai" href="./sozai.html"><i class="fas fa-cube"></i> 鉄道関連の3Dモデルはこちらから配布中！</a>
+    <p class="sozai2">現在、制作中の3DモデルをGoogle driveを介して配布しております。</p>
 
-<p style="text-align: center; color: rgb(255, 0, 0); font-weight: 800; margin: 20px;">※現在HPリニューアル中です。背景色などおかしな点が沢山ありますがご了承ください。</p>
+    <div class="alert-box">
+      ※現在HPリニューアル中です。背景色などおかしな点が沢山ありますがご了承ください。
+    </div>
+
     <section id="railways">
-      <h2 class="itiran">鉄道一覧</h2>
+      <h2 class="itiran"><i class="fas fa-train"></i> 鉄道一覧</h2>
       <div class="railway-list">
-
 
         <div class="railway-card">
           <img class="okiimg" src="./無題463_20251012231112.png" alt="沖縄メトロロゴ">
           <h3>Okinawa Metro(沖縄メトロ)</h3>
           <p>沖縄の那覇から名護などの都市を結ぶ近未来メトロ。高規格路線で、160km/h運転が可能。</p>
-          <a href="https://fictional-railway.github.io/OkinawaMetro/" class="btn">ホームページへアクセス</a>
+          <a href="https://fictional-railway.github.io/OkinawaMetro/" class="btn">ホームページへアクセス <i class="fas fa-chevron-right"></i></a>
         </div>
 
         <div class="railway-card">
-          <img class="aikimg" src="./無題485_20251101195037.png" width="35%" alt="愛川電鉄ロゴ">
+          <img class="aikimg" src="./無題485_20251101195037.png" alt="愛川電鉄ロゴ">
           <h3>愛川電鉄</h3>
           <p>神奈川県央部を走る田舎風のレトロな鉄道。2両編成が基本。ニュータウン・空港情報も要チェック！</p>
-          <a href="https://fictional-railway.github.io/Aikawa-Electric-Railway/index.html" class="btn">ホームページへアクセス</a>
+          <a href="https://fictional-railway.github.io/Aikawa-Electric-Railway/index.html" class="btn">ホームページへアクセス <i class="fas fa-chevron-right"></i></a>
         </div>
 
         <div class="railway-card">
-          <img class="kikimg" src="./無題489_20251101234113.png" width="35%" alt="画像がありません">
+          <img class="kikimg" src="./無題489_20251101234113.png" alt="菊池電車ロゴ">
           <h3>菊池電車</h3>
           <p>熊本県北部を走るローカル鉄道。熊本から菊池・熊本空港へのアクセスに超便利！</p>
-          <a href="https://fictional-railway.github.io/Kikuchi-Electric-Train/" class="btn">ホームページへアクセス</a>
+          <a href="https://fictional-railway.github.io/Kikuchi-Electric-Train/" class="btn">ホームページへアクセス <i class="fas fa-chevron-right"></i></a>
         </div>
-        <!--
-        <div class="railway-card">
-          <img class="shnimg" src="./無題489_20251101234113.png" width="35%" alt="画像がありません">
-          <h3>信南高速鉄道</h3>
-          <p>横浜から東京、軽井沢、松本などを経由して長野にいたる鉄道。第三セクターであり、最高時速230km/hで信州を駆け巡る高規格路線。</p>
-          <a href="https://fictional-railway.github.io/SHN-Rapid-Railway/index.html" class="btn">ホームページへアクセス</a>
-        </div>-->
 
-        <!-- ここに鉄道カードを追加していける -->
-         
+        </div>
+
+      <div class="info-border">
+        <i class="fas fa-info-circle"></i> データ紛失で消えていた信南高速鉄道、リニューアルにつき復活の予感、、、？<br>1月9日(金)追記:やっぱり後1ヶ月はかかりそうです、、、。
       </div>
-      <p style="text-align: center; background-color: rgb(255, 255, 255); margin-left: 20px; margin-right: 20px; border-radius: 10px; padding: 7px; border: rgb(47, 154, 154) solid 3px;">
-        データ紛失で消えていた信南高速鉄道、リニューアルにつき復活の予感、、、？
-      </p>
     </section>
 
     <section class="railways">
-      <h2 class="itiran">若狭県関連</h2>
+      <h2 class="itiran"><i class="fas fa-map-marked-alt"></i> 若狭県関連</h2>
       <div class="railway-list">
+        
         <div class="railway-card">
-          <img class="wks-img" src="./若狭県章-透過.png" alt="県章制作中...">
+          <img class="wks-img" src="./若狭県章-透過.png" alt="若狭県">
           <h3>若狭県</h3>
           <p class="kome">※現在制作中です。多数のバグや表記崩れが発生しております。</p>
           <p>若狭県は若狭湾に所在する架空の県。透き通る海と緑深い山々が魅力で、伝統と文化が息づく静かな地域。</p>
-          <a href="https://fictional-railway.github.io/Pref.Wakasa/" class="btn">ホームページへアクセス</a>
+          <a href="https://fictional-railway.github.io/Pref.Wakasa/" class="btn">ホームページへアクセス <i class="fas fa-chevron-right"></i></a>
         </div>
 
         <div class="railway-card">
-          <img class="WAKASA!" src="./image.png" alt="ロゴ未定">
+          <img class="WAKASA!" src="./image.png" alt="WAKASA!">
           <h3>WAKASA!</h3>
-          <p>
-            若狭県最大級の地域ポータルサイト。ニュース、イベント情報、グルメ情報など、若狭県の魅力を余すことなく発信しています。
-          </p>
-          <a href="https://fictional-railway.github.io/WAKASA-jp/" class="btn">ホームページへアクセス</a>
+          <p>若狭県最大級の地域ポータルサイト。ニュース、イベント情報、グルメ情報など、若狭県の魅力を余すことなく発信しています。</p>
+          <a href="https://fictional-railway.github.io/WAKASA-jp/" class="btn">ホームページへアクセス <i class="fas fa-chevron-right"></i></a>
         </div>
 
         <div class="railway-card">
-          <img class="ifune" src="./image-copy1.png" alt="ロゴ未定">
+          <img class="ifune" src="./image-copy1.png" alt="伊舟山交通">
           <h3>伊舟山交通</h3>
-          <p>
-            若狭県伊舟市を拠点とする地域バス会社。市内外へのアクセスを提供し、観光地や主要施設へ移動に便利な移動手段です。
-          </p>
-          <a href="https://fictional-railway.github.io/Ifunesan-Bus/" class="btn">ホームページへアクセス</a>
+          <p>若狭県伊舟市を拠点とする地域バス会社。市内外へのアクセスを提供し、観光地や主要施設へ移動に便利な移動手段です。</p>
+          <a href="https://fictional-railway.github.io/Ifunesan-Bus/" class="btn">ホームページへアクセス <i class="fas fa-chevron-right"></i></a>
         </div>
-
-        
 
         <div class="railway-card">
           <img class="wcl-img" src="./若狭海岸ロゴ1.png" alt="若狭海岸鉄道">
           <h3>若狭海岸鉄道</h3>
-          <p>日本海沿いをのんびり走る、海が似合うローカル鉄道。
-          車窓いっぱいに広がる青い海と、観光地へのアクセスが魅力的！</p>
-          <a href="https://fictional-railway.github.io/Wakasa-Coastal-Railway/" class="btn">ホームページへアクセス</a>
+          <p>日本海沿いをのんびり走る、海が似合うローカル鉄道。車窓いっぱいに広がる青い海と、観光地へのアクセスが魅力的！</p>
+          <a href="https://fictional-railway.github.io/Wakasa-Coastal-Railway/" class="btn">ホームページへアクセス <i class="fas fa-chevron-right"></i></a>
         </div>
         
         <div class="railway-card">
           <img class="wcl-img" src="./Misaca.png" alt="Misaca">
           <h3>Misaca</h3>
           <p>若狭海岸鉄道が発行する、プリペイド式ICカード。若狭県内私鉄、バス会社及び商業加盟店にて使用できます。モバイル版Misacaもサービス中！</p>
-          <a href="https://fictional-railway.github.io/Wakasa-Coastal-Railway/fare.html" class="btn">ホームページへアクセス</a>
-          <a href="https://fictional-railway.github.io/Wakasa-Coastal-Railway/fare.html" class="btn">モバイルMisacaはこちらから</a>
+          <a href="https://fictional-railway.github.io/Wakasa-Coastal-Railway/fare.html" class="btn">ホームページへアクセス <i class="fas fa-chevron-right"></i></a>
+          <a href="https://fictional-railway.github.io/Wakasa-Coastal-Railway/fare.html" class="btn">モバイルMisacaはこちらから <i class="fas fa-mobile-alt"></i></a>
         </div>
 
         <div class="railway-card">
-          <img src="./スクリーンショット 2025-12-17 204232.png" alt="蒼風急行 AOKAZE RAILWAY">
+          <img src="./スクリーンショット 2025-12-17 204232.png" alt="蒼風急行">
           <h3>蒼風急行</h3>
-          <p>
-            若狭県内を縦断する鉄道。主要都市を結び、ビジネスや観光に最適なアクセスを提供します。この世界線初の3県乗り入れ路線！
-          </p>
-          <a href="https://fictional-railway.github.io/Aokyu-Railway/" class="btn">ホームページへアクセス</a>
+          <p>若狭県内を縦断する鉄道。主要都市を結び、ビジネスや観光に最適なアクセスを提供します。この世界線初の3県乗り入れ路線！</p>
+          <a href="https://fictional-railway.github.io/Aokyu-Railway/" class="btn">ホームページへアクセス <i class="fas fa-chevron-right"></i></a>
         </div>
+
         <div class="railway-card">
-          <img class="wcl-img" src="#" alt="ロゴ未定">
+          <img class="wcl-img" src="#" alt="京橋鉄道">
           <h3>京橋鉄道</h3>
-          <p>
-            東若狭の都市間を結び、通勤・観光に便利な路線網が特徴！
-            寝台特急の運行もあり、快適な旅を提供します。
-          </p>
-          <a href="https://fictional-railway.github.io/Kyobashi-Railway/" class="btn">ホームページへアクセス</a>
+          <p>東若狭の都市間を結び、通勤・観光に便利な路線網が特徴！寝台特急の運行もあり、快適な旅を提供します。</p>
+          <a href="https://fictional-railway.github.io/Kyobashi-Railway/" class="btn">ホームページへアクセス <i class="fas fa-chevron-right"></i></a>
         </div>
-</div>
+
+      </div>
+      <div style="text-align: center;">
         <a href="sonota.html" class="btn2">その他、WAKASA!を制作する際に溢れ出した架空企業等はこちらから</a>
-          
-      </section>
-<br>
-      <section id="railways">
-      <h2 class="itiran">その他</h2>
+      </div>
+    </section>
+
+    <section id="other-railways">
+      <h2 class="itiran"><i class="fas fa-city"></i> その他</h2>
       <div class="railway-list">
 
         <div class="railway-card">
-          <img class="ainimg" src="./愛川1.png" alt="現在制作中！しばしお待ちを…">
+          <img class="ainimg" src="./愛川1.png" alt="愛川ニュータウン">
           <h3>愛川ニュータウン</h3>
           <p>神奈川県央・愛川町に所在。2020年完成の新しいニュータウンです。緑豊かな丘陵地に広がる自然と街並みが魅力です。</p>
-          <a href="https://fictional-railway.github.io/Aikawa-Newtown/" class="btn">ホームページへアクセス</a>
+          <a href="https://fictional-railway.github.io/Aikawa-Newtown/" class="btn">ホームページへアクセス <i class="fas fa-chevron-right"></i></a>
         </div>
 
         <div class="railway-card">
-          <img class="okikan" src="./ロゴ3.png" alt="画像がありません">
+          <img class="okikan" src="./ロゴ3.png" alt="神奈川空港">
           <h3>神奈川空港</h3>
           <p>神奈川県央・厚木市に所在。旧厚木基地を転用し、2020年に開港しました。神奈川空港へのアクセスは愛川電鉄が抜群！</p>
-          <br>
-          <a href="https://fictional-railway.github.io/Atsugi-Kanagawa/" class="btn">ホームページへアクセス</a>
+          <a href="https://fictional-railway.github.io/Atsugi-Kanagawa/" class="btn">ホームページへアクセス <i class="fas fa-chevron-right"></i></a>
         </div>
       
-        <!-- ここに鉄道カードを追加していける -->
-      </div>
+        </div>
     </section>
      
     <p class="zuiji">随時更新中！次の架空鉄道制作は<strong>[未定/2月までに新作?]</strong>を予定しております。</p>
@@ -162,7 +399,7 @@
   <footer class="footer">
     <p>最終更新日　2025年01月04日</p>
     <p>© Mizuki 2025. 当サイトの内容の無断転載・複製を禁止します。<br>※リンク・紹介は自由です。</p>
-    <p style="font-style: normal; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Design Support:𝙺𝚒𝚌𝚑𝚒𝚢𝚊 | sÖrAm̈a.jpg ❏ | Japojapo_ jp</p>
+    <p style="opacity: 0.7; font-size: 0.8rem; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Design Support:𝙺𝚒𝚌𝚑𝚒𝚢𝚊 | sÖrAm̈a.jpg ❏ | Japojapo_ jp</p>
   </footer>
 </body>
 </html>
