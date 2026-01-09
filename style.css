@@ -1,214 +1,264 @@
+    /* --- ベーススタイル --- */
+    :root {
+      --primary-color: #0056b3; /* 信頼感のある鉄道ブルー */
+      --accent-color: #00a8cc; /* 明るい空色 */
+      --bg-color: #f4f7f6;
+      --card-bg: #ffffff;
+      --text-main: #333333;
+      --text-sub: #666666;
+      --alert-bg: #fff0f0;
+      --alert-text: #d32f2f;
+    }
 
-/* 全体のスタイル */
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f8f8f8;
-  color: #333;
-  background: #ecffd5;
-  position: relative;
-}
+    body {
+      font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
 
-body::before {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
-  font-size: 24px;
-  color: rgba(152, 61, 61, 0.05);
-  transform: rotate(-45deg);
-  pointer-events: none;
-  white-space: pre-wrap;
-  line-height: 1.8;
-  z-index: -1;
-  overflow: hidden;
-}
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-header {
-  background-color: #3399ff;
-  color: white;
-  padding: 2rem;
-  text-align: center;
-}
+    /* --- ヘッダー --- */
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
 
-header nav a {
-  color: white;
-  margin: 0 1rem;
-  text-decoration: none;
-  font-weight: bold;
-}
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
 
-h1, h2, h3 {
-  margin: 0.5rem 0;
-}
+    header p {
+      margin-top: 10px;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
 
-.itiran {
-  text-align: center;
-  margin-top: 2rem;
-  background-color: #ddd;
-  margin: 20px;
-  border: #222 solid 1.5px;
-  border-radius: 20px;
-}
+    /* --- メインコンテンツ --- */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
 
-/* 鉄道一覧 */
-.railway-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  padding: 2rem;
-}
+    /* --- お知らせ・素材エリア --- */
+    .sozai {
+      display: block;
+      background-color: var(--accent-color);
+      color: white;
+      text-align: center;
+      padding: 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s;
+      margin-bottom: 10px;
+    }
+    .sozai:hover {
+      background-color: var(--primary-color);
+    }
 
-.railway-card {
-  background-color: rgb(255, 255, 255);
-  border-radius: 10px;
-  width: 250px;
-  padding: 1rem;
-  text-align: center;
-}
+    .sozai2 {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      margin-bottom: 30px;
+    }
 
-.railway-card img {
-  width: 80%;
-  border-radius: 8px;
-}
+    /* 警告メッセージ風スタイル */
+    .alert-box {
+      background-color: var(--alert-bg);
+      color: var(--alert-text);
+      padding: 15px;
+      border-left: 5px solid var(--alert-text);
+      border-radius: 4px;
+      margin: 20px 0;
+      font-weight: bold;
+      text-align: center;
+    }
 
-.railway-card .btn {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: #3399ff;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-}
+    /* --- セクション見出し --- */
+    section {
+      margin-bottom: 60px;
+    }
 
-.railway-card .btn:hover {
-  background-color: #2673cc;
-}
+    h2.itiran {
+      font-size: 1.8rem;
+      border-bottom: 3px solid var(--primary-color);
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    h2.itiran::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 30%;
+      height: 3px;
+      background-color: var(--accent-color);
+    }
 
-/* フッター */
-footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: #222;
-  color: white;
-}
+    /* --- グリッドレイアウト --- */
+    .railway-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
 
-.okiimg {
-    padding: 22.5px
-}
+    /* --- カードデザイン --- */
+    .railway-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
 
-.aikimg {
-    padding: -4050px;
-    margin: -30px;
-}
+    .railway-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
 
-.footer p {
-    font-style: italic;
-    font-weight: normal;
-}
+    /* ▼▼▼ 今回の修正ポイント ▼▼▼ 
+       画像の表示設定を変更しました
+    */
+    .railway-card img {
+      width: 100%;
+      height: 200px;       /* 高さは固定してレイアウト崩れを防ぐ */
+      object-fit: contain; /* 画像を切り取らずに全体を表示する設定 */
+      padding: 15px;       /* 画像の周りに余白を入れて、端が見切れないようにする */
+      background-color: #ffffff; /* 透過画像の背景を白にする */
+      border-bottom: 1px solid #eee;
+      box-sizing: border-box; /* paddingを含めたサイズ計算にする */
+    }
 
-.zuiji {
-    text-align: center;
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 20px;
-}
+    .railway-card h3 {
+      font-size: 1.25rem;
+      margin: 10px 20px 10px;
+      color: var(--primary-color);
+    }
 
-.toppage-s{
-    background-color: #88c4ff;
-    color: rgb(0, 0, 0);
-    border: 1.5px solid #08bec4;
-    margin: 10px;
-    text-align: center;
-    border-radius: 3.5px;
-    padding: 5px;
+    .railway-card p {
+      padding: 0 20px;
+      font-size: 0.95rem;
+      color: var(--text-sub);
+      flex-grow: 1; /* ボタンを下揃えにするため */
+      margin-bottom: 20px;
+    }
 
-}
+    .railway-card p.kome {
+      color: var(--alert-text);
+      font-size: 0.85rem;
+      font-weight: bold;
+    }
 
-.toppage-s a{
-    text-decoration: none;
-    color: rgb(0, 0, 0);
-    font-weight: 500;
-    text-align: center;
-}
+    /* --- ボタン --- */
+    .btn {
+      display: block;
+      background-color: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 12px;
+      margin: 0 20px 20px;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background-color: #003d80;
+    }
+    /* 2つ目のボタンがある場合のマージン調整 */
+    .railway-card .btn + .btn {
+      margin-top: -10px;
+      background-color: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
+    .railway-card .btn + .btn:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
 
-.toppage-s a:hover{
-    border-bottom: 2px dashed #222;
-}
+    /* その他のリンクボタン */
+    .btn2 {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #6c757d;
+      color: white;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      transition: opacity 0.3s;
+    }
+    .btn2:hover {
+      opacity: 0.8;
+    }
 
-.sozai {
-  display: block;
-  margin: 20px;
-  padding-bottom: 4px;
-  text-align: center;
-  text-decoration: none;
-  color: #222;
-  font-size: 20px;
-}
+    /* --- 特殊なインフォメーション枠 --- */
+    .info-border {
+      text-align: center;
+      background-color: #e0f7fa;
+      color: #006064;
+      margin: 40px auto;
+      border-radius: 10px;
+      padding: 20px;
+      border: 2px solid var(--accent-color);
+      max-width: 800px;
+      line-height: 1.8;
+    }
 
-.sozai:hover {
-  border-bottom: 2px dashed #222;
-}
+    .zuiji {
+      text-align: center;
+      margin-top: 50px;
+      font-weight: bold;
+      color: var(--text-main);
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+    }
 
-.sozai2 {
-  display: block;
-  margin: 20px;
-  padding-bottom: 4px;
-  text-align: center;
+    /* --- フッター --- */
+    .footer {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9rem;
+    }
+    .footer p {
+      margin: 10px 0;
+    }
 
-}
-
-/* デフォルトは無効 */
-br.mobile-only-br {
-  display: none;
-}
-
-/* スマホだけ有効に */
-@media (max-width: 767px) {
-  br.mobile-only-br {
-    display: inline;
-  }
-}
-
-.kome {
-  color: #ff0000;
-  font-weight: 500;
-}
-
-.btn-cls {
-  text-align: center;
-}
-
-.wks-img {
-  width: 6px;
-}
-
-.btn2 {
-  text-align: center;
-  display: block;
-  margin: 10px;
-  padding: 0.5rem 1rem;
-  background-color: #ffffff;
-  border: 1.5px solid #3399ff;
-  color: rgb(0, 0, 0);
-  text-decoration: none;
-  border-radius: 5px;
-}
-
-.btn2:hover {
-  background-color: #ecf5ff;
-}
-
-.sonota-list a {
-  color: #000000;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.sonota-list a:hover {
-  border-bottom: 1.5px dashed #222;
-}
+    /* --- レスポンシブ対応 --- */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+      .mobile-only-br {
+        display: block;
+      }
+      /* スマホで見るとき、画像の高さを少し控えめにして画面を有効活用 */
+      .railway-card img {
+        height: 160px;
+      }
+    }
+    @media (min-width: 769px) {
+      .mobile-only-br {
+        display: none;
+      }
+    }
