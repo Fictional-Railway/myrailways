@@ -283,3 +283,16 @@
       border-radius: 5px;
     }
     
+    .news-date {
+      color: #003d80;
+      font-weight: bold;
+    }
+
+    .new-oshi {
+      background-color: #ff5733;
+      color: white;
+      font-size: 0.75rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 8px;
+    }
