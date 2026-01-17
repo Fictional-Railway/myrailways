@@ -296,3 +296,9 @@
       border-radius: 4px;
       margin-left: 8px;
     }
+
+    .mail {
+      color: #0056b3;
+      font-weight: bold;
+      text-decoration: underline;
+    }
