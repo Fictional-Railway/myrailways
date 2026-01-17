@@ -89,6 +89,17 @@
       text-align: center;
     }
 
+    .alert-box2 {
+      background-color: #d4f7ff;
+      color: var(--accent-color);
+      padding: 15px;
+      border-left: 5px solid var(--accent-color);
+      border-radius: 4px;
+      margin: 20px 0;
+      font-weight: bold;
+      text-align: center;
+    }
+
     /* --- セクション見出し --- */
     section {
       margin-bottom: 60px;
